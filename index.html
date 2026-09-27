@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sahana | CSIT Student Portfolio</title>
+
+    <style>
+        /* ==============================
+           RESET & GLOBAL STYLES
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --background: #f7f9fc;
+            --surface: #ffffff;
+            --surface-soft: #f1f4fa;
+
+            --primary: #3157d5;
+            --primary-dark: #2444ad;
+            --primary-soft: #eef2ff;
+
+            --text: #172033;
+            --text-secondary: #475467;
+            --muted: #667085;
+
+            --border: #e4e8f0;
+
+            --dark: #151a2b;
+            --dark-soft: #20283e;
+
+            --shadow: 0 10px 30px rgba(25, 40, 80, 0.07);
+            --shadow-hover: 0 16px 38px rgba(25, 40, 80, 0.11);
+
+            --radius: 14px;
+        }
+
+        html {
+            scroll-padding-top: 85px;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.65;
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* ==============================
+           REUSABLE CONTAINER
+        ============================== */
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 88px 0;
+        }
+
+        /* ==============================
+           SECTION HEADINGS
+        ============================== */
+
+        .section-title {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 48px;
+        }
+
+        .section-title span {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.75rem, 4vw, 2.2rem);
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            font-size: 0.98rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ==============================
+           NAVIGATION
+        ============================== */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 650;
+            padding: 23px 0;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 16px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .hero {
+            min-height: calc(100vh - 68px);
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    #e3e9ff 0,
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 10% 80%,
+                    #edf2ff 0,
+                    transparent 27%
+                ),
+                var(--background);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 65px;
+            align-items: center;
+            padding: 70px 0;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+
+            background: var(--primary-soft);
+            color: var(--primary);
+
+            padding: 7px 14px;
+            border-radius: 30px;
+
+            font-size: 0.8rem;
+            font-weight: 750;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.25rem);
+            line-height: 0.98;
+            letter-spacing: -2.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero h2 {
+            color: var(--text-secondary);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            line-height: 1.4;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero-description {
+            max-width: 620px;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* ==============================
+           BUTTONS
+        ============================== */
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            font-size: 0.88rem;
+            font-weight: 700;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(49, 87, 213, 0.2);
+        }
+
+        .btn-outline {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* ==============================
+           CODE CARD
+        ============================== */
+
+        .code-card {
+            position: relative;
+            overflow: hidden;
+
+            background: var(--dark);
+            color: #dce4ff;
+
+            border-radius: 16px;
+            padding: 28px;
+
+            box-shadow: var(--shadow);
+
+            transform: rotate(1deg);
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .code-card::after {
+            content: "";
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            right: -75px;
+            bottom: -75px;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .code-card:hover {
+            transform: rotate(0deg) translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .terminal-top {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 23px;
+        }
+
+        .terminal-top i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #8992a9;
+        }
+
+        .code-line {
+            margin: 9px 0;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.86rem;
+        }
+
+        .code-blue {
+            color: #8ba8ff;
+        }
+
+        .code-green {
+            color: #8dd5ad;
+        }
+
+        .code-purple {
+            color: #c7a7ff;
+        }
+
+        /* ==============================
+           COMMON CARDS
+        ============================== */
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ==============================
+           ABOUT
+        ============================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .about-card {
+            padding: 30px;
+        }
+
+        .education-card {
+            border-left: 4px solid var(--primary);
+        }
+
+        .about-card h3 {
+            font-size: 1.16rem;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .about-card strong {
+            color: var(--text);
+        }
+
+        /* ==============================
+           LEARNING JOURNEY
+        ============================== */
+
+        .journey {
+            background: var(--surface);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+
+            left: 18px;
+            top: 0;
+            bottom: 0;
+
+            width: 2px;
+            background: #dce2f1;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 28px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+
+            left: 10px;
+            top: 7px;
+
+            width: 18px;
+            height: 18px;
+
+            background: var(--primary);
+            border: 4px solid #dfe6ff;
+            border-radius: 50%;
+        }
+
+        .timeline-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 23px;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(4px);
+            border-color: #cbd5ff;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.03rem;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .timeline-card p {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        /* ==============================
+           PROJECTS
+        ============================== */
+
+        .projects-section {
+            background: linear-gradient(
+                180deg,
+                var(--background) 0%,
+                #f3f6ff 100%
+            );
+        }
+
+        .project-card {
+            max-width: 950px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .project-top {
+            display: grid;
+            grid-template-columns: 185px 1fr;
+        }
+
+        .project-visual {
+            position: relative;
+            overflow: hidden;
+
+            background: var(--dark);
+            color: white;
+
+            min-height: 285px;
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-visual::before,
+        .project-visual::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .project-visual::before {
+            width: 190px;
+            height: 190px;
+            right: -100px;
+            top: -65px;
+        }
+
+        .project-visual::after {
+            width: 130px;
+            height: 130px;
+            left: -75px;
+            bottom: -70px;
+        }
+
+        .project-icon {
+            position: relative;
+            z-index: 1;
+
+            width: 62px;
+            height: 62px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .project-label {
+            position: relative;
+            z-index: 1;
+
+            color: #aeb9d4;
+
+            font-size: 0.72rem;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+
+            background: var(--primary-soft);
+            color: var(--primary);
+
+            padding: 5px 11px;
+            border-radius: 20px;
+
+            font-size: 0.72rem;
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .project-content h3 {
+            font-size: 1.55rem;
+            line-height: 1.25;
+            margin-bottom: 11px;
+        }
+
+        .project-description {
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 690px;
+            margin-bottom: 22px;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .project-detail {
+            background: #f8f9fc;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 12px 14px;
+        }
+
+        .project-detail strong {
+            display: block;
+            color: var(--text);
+            font-size: 0.77rem;
+            margin-bottom: 3px;
+        }
+
+        .project-detail span {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .project-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .repository-text {
+            color: var(--muted);
+            font-size: 0.78rem;
+            word-break: break-all;
+        }
+
+        /* ==============================
+           SKILLS
+        ============================== */
+
+        .skills-container {
+            max-width: 850px;
+            margin: 0 auto;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 11px;
+        }
+
+        .skill {
+            background: var(--surface);
+            color: #344054;
+
+            border: 1px solid var(--border);
+            border-radius: 30px;
+
+            padding: 10px 17px;
+
+            font-size: 0.88rem;
+            font-weight: 650;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .skill:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* ==============================
+           CAREER GOAL
+        ============================== */
+
+        .career-box {
+            max-width: 880px;
+            margin: 0 auto;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #ffffff
+                );
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            padding: 52px 30px;
+
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .career-box .section-title {
+            margin-bottom: 20px;
+        }
+
+        .career-box p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 0.97rem;
+        }
+
+        /* ==============================
+           CONTACT
+        ============================== */
+
+        .contact {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title span {
+            color: #9eb2ff;
+        }
+
+        .contact .section-title p {
+            color: #aab3c7;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .contact-link {
+            min-height: 44px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            border: 1px solid #3c455e;
+            border-radius: 8px;
+
+            padding: 10px 18px;
+
+            font-size: 0.88rem;
+            font-weight: 650;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .contact-link:hover {
+            background: white;
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            background: #101422;
+            color: #8e98ad;
+            text-align: center;
+            padding: 18px 20px;
+            font-size: 0.82rem;
+        }
+
+        /* ==============================
+           SCROLL REVEAL
+        ============================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==============================
+           TABLET
+        ============================== */
+
+        @media (max-width: 900px) {
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 45px;
+                padding: 60px 0;
+            }
+
+            .code-card {
+                max-width: 620px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-top {
+                grid-template-columns: 1fr;
+            }
+
+            .project-visual {
+                min-height: 190px;
+            }
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 650px) {
+
+            body {
+                font-size: 15px;
+            }
+
+            .container {
+                width: min(100% - 30px, 1120px);
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            /* Navigation */
+
+            .nav-container {
+                min-height: auto;
+                padding: 13px 0;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px 13px;
+            }
+
+            .nav-links a {
+                padding: 4px 0;
+                font-size: 0.76rem;
+            }
+
+            .nav-links a::after {
+                bottom: 0;
+            }
+
+            /* Hero */
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 55px 0;
+                gap: 38px;
+            }
+
+            .hero h1 {
+                font-size: 3.25rem;
+                letter-spacing: -1.8px;
+            }
+
+            .hero h2 {
+                font-size: 1.05rem;
+            }
+
+            .hero-description {
+                font-size: 0.94rem;
+            }
+
+            .button-group {
+                margin-top: 25px;
+            }
+
+            .btn {
+                font-size: 0.84rem;
+            }
+
+            /* Section headings */
+
+            .section-title {
+                margin-bottom: 35px;
+            }
+
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+
+            .section-title p {
+                font-size: 0.9rem;
+            }
+
+            /* Timeline */
+
+            .timeline::before {
+                left: 13px;
+            }
+
+            .timeline-item {
+                padding-left: 43px;
+                margin-bottom: 22px;
+            }
+
+            .timeline-dot {
+                left: 5px;
+            }
+
+            .timeline-card {
+                padding: 19px;
+            }
+
+            .timeline-card h3 {
+                font-size: 0.98rem;
+            }
+
+            .timeline-card p {
+                font-size: 0.88rem;
+            }
+
+            /* Project */
+
+            .project-content {
+                padding: 24px 20px;
+            }
+
+            .project-content h3 {
+                font-size: 1.35rem;
+            }
+
+            .project-description {
+                font-size: 0.89rem;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+
+            .project-footer {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .project-footer .btn {
+                width: 100%;
+            }
+
+            /* Career */
+
+            .career-box {
+                padding: 40px 22px;
+            }
+        }
+
+        /* ==============================
+           SMALL MOBILE
+        ============================== */
+
+        @media (max-width: 420px) {
+
+            .hero h1 {
+                font-size: 2.85rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .code-card {
+                padding: 20px;
+            }
+
+            .code-line {
+                font-size: 0.76rem;
+            }
+
+            .about-card {
+                padding: 23px;
+            }
+
+            .project-visual {
+                min-height: 160px;
+                padding: 24px;
+            }
+
+            .project-content {
+                padding: 22px 18px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <nav>
+        <div class="container nav-container">
+
+            <div class="logo">
+                Sahana.
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#goal">Goal</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- ==============================
+         HERO / INTRODUCTION
+    ============================== -->
+
+    <header class="hero">
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-tag">
+                    3rd Semester CSIT Student
+                </span>
+
+                <h1>
+                    Hello, I'm <span>Sahana</span>.
+                </h1>
+
+                <h2>
+                    Computer Science and Information Technology Student
+                </h2>
+
+                <p class="hero-description">
+                    I am building my technical foundation through programming,
+                    problem-solving, software development, and practical work
+                    with C, Python, VS Code, Git, and GitHub.
+                </p>
+
+                <div class="button-group">
+
+                    <a href="#projects" class="btn btn-primary">
+                        Explore My Project →
+                    </a>
+
+                    <a
+                        href="https://github.com/sahana198"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-outline"
+                    >
+                        GitHub Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="code-card">
+
+                <div class="terminal-top">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
+
+                <div class="code-line">
+                    <span class="code-purple">#include</span>
+                    <span class="code-green">&lt;stdio.h&gt;</span>
+                </div>
+
+                <div class="code-line">
+                    <span class="code-blue">int</span> main() {
+                </div>
+
+                <div class="code-line">
+                    &nbsp;&nbsp;printf(
+                    <span class="code-green">"Keep Learning!";</span>
+                </div>
+
+                <div class="code-line">
+                    &nbsp;&nbsp;<span class="code-blue">return</span> 0;
+                </div>
+
+                <div class="code-line">
+                    }
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         ABOUT ME
+    ============================== -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>About Me</span>
+
+                <h2>
+                    Building My Technical Foundation
+                </h2>
+
+                <p>
+                    My current learning journey focuses on practical
+                    programming, development tools, and problem-solving.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="card about-card education-card reveal">
+
+                    <h3>
+                        Education
+                    </h3>
+
+                    <p>
+                        <strong>
+                            3rd Semester Computer Science and
+                            Information Technology (CSIT) Student
+                        </strong>
+                    </p>
+
+                    <p style="margin-top: 10px;">
+                        I am developing my programming and technical skills
+                        through practical activities and continuous learning.
+                    </p>
+
+                </div>
+
+
+                <div class="card about-card reveal">
+
+                    <h3>
+                        Learning Interests
+                    </h3>
+
+                    <p>
+                        I am interested in programming, problem-solving,
+                        software development, Git, and GitHub, while
+                        continuing to strengthen my technical foundation.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         LEARNING JOURNEY
+    ============================== -->
+
+    <section id="journey" class="journey">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>My Learning Journey</span>
+
+                <h2>
+                    Practical Activities
+                </h2>
+
+                <p>
+                    A record of the development tools and workflows
+                    I have explored as part of my learning.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <!-- Activity 1 -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>
+                            01 · C/C++ Development Environment
+                        </h3>
+
+                        <p>
+                            Set up a C/C++ development environment using
+                            Visual Studio Code, installed the C/C++ extension,
+                            configured GCC/MinGW-w64, and created and ran
+                            a Hello World program in C.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Activity 2 -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>
+                            02 · VS Code Extensions and Collaboration
+                        </h3>
+
+                        <p>
+                            Explored the Python extension, Java Extension Pack,
+                            Prettier, GitLens, and Live Share. Practiced
+                            Python and Java Hello World programs, code
+                            formatting, Git history, and real-time
+                            collaboration using Live Share.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Activity 3 -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>
+                            03 · GitHub Fundamentals
+                        </h3>
+
+                        <p>
+                            Learned to create a public GitHub repository,
+                            work with README files, make separate commits,
+                            review commit history, and push changes to GitHub.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Activity 4 -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>
+                            04 · Git, Branches, Pull Requests and Pages
+                        </h3>
+
+                        <p>
+                            Learned to create branches, make changes on a
+                            branch, commit and push changes, create and merge
+                            pull requests, and use GitHub Pages to publish
+                            a webpage.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         PROJECTS
+    ============================== -->
+
+    <section id="projects" class="projects-section">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Projects</span>
+
+                <h2>
+                    Programming Practice
+                </h2>
+
+                <p>
+                    My current project work reflects my ongoing practice
+                    in programming logic and problem-solving.
+                </p>
+
+            </div>
+
+
+            <div class="card project-card reveal">
+
+                <div class="project-top">
+
+                    <div class="project-visual">
+
+                        <div class="project-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <div class="project-label">
+                            Student Practice
+                        </div>
+
+                    </div>
+
+
+                    <div class="project-content">
+
+                        <div class="project-badge">
+                            ● Ongoing Practice
+                        </div>
+
+                        <h3>
+                            LeetCode Solutions
+                        </h3>
+
+                        <p class="project-description">
+                            This repository represents my ongoing practice
+                            with programming logic and problem-solving.
+                            I use it to work through LeetCode questions
+                            and strengthen the way I approach programming
+                            problems step by step.
+                        </p>
+
+
+                        <div class="project-details">
+
+                            <div class="project-detail">
+                                <strong>Focus</strong>
+                                <span>
+                                    Programming logic and problem-solving
+                                </span>
+                            </div>
+
+                            <div class="project-detail">
+                                <strong>Purpose</strong>
+                                <span>
+                                    Regular programming practice
+                                </span>
+                            </div>
+
+                            <div class="project-detail">
+                                <strong>Repository</strong>
+                                <span>
+                                    GitHub
+                                </span>
+                            </div>
+
+                            <div class="project-detail">
+                                <strong>Learning Goal</strong>
+                                <span>
+                                    Improve programming skills
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="project-footer">
+
+                            <div class="repository-text">
+                                github.com/sahana198/leetcode-solutions
+                            </div>
+
+                            <a
+                                href="https://github.com/sahana198/leetcode-solutions"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-primary"
+                            >
+                                View Repository ↗
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         SKILLS
+    ============================== -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Skills</span>
+
+                <h2>
+                    My Current Technical Focus
+                </h2>
+
+                <p>
+                    The main programming skills I am currently developing.
+                </p>
+
+            </div>
+
+
+            <div class="skills-container reveal">
+
+                <div class="skill">
+                    C
+                </div>
+
+                <div class="skill">
+                    Python
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         CAREER GOAL
+    ============================== -->
+
+    <section id="goal">
+
+        <div class="container">
+
+            <div class="career-box reveal">
+
+                <div class="section-title">
+
+                    <span>Career Goal</span>
+
+                    <h2>
+                        Growing Through Continuous Learning
+                    </h2>
+
+                </div>
+
+                <p>
+                    My goal is to improve my programming and problem-solving
+                    skills and become a skilled software developer. I aim to
+                    strengthen my technical foundation through consistent
+                    practice and practical development activities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         CONTACT / GITHUB
+    ============================== -->
+
+    <section id="contact" class="contact">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Contact / GitHub</span>
+
+                <h2>
+                    Explore My GitHub
+                </h2>
+
+                <p>
+                    You can explore my programming practice and learning work
+                    through GitHub.
+                </p>
+
+            </div>
+
+
+            <div class="contact-links reveal">
+
+                <a
+                    href="https://github.com/sahana198"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                >
+                    GitHub Profile
+                </a>
+
+                <a
+                    href="https://github.com/sahana198/leetcode-solutions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                >
+                    LeetCode Repository
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer>
+        <p>
+            © 2026 Sahana · CSIT Student Portfolio
+        </p>
+    </footer>
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+
+    <script>
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        revealElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+
+</body>
+</html>
